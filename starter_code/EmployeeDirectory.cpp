@@ -30,7 +30,7 @@ void EmployeeDirectory::printEmployee(LLNode* n) {
 // ----------------------------------------------------------------------------
 
 EmployeeDirectory::EmployeeDirectory() {
-    // TODO
+    //todo
 }
 
 // ----------------------------------------------------------------------------
@@ -41,8 +41,24 @@ EmployeeDirectory::~EmployeeDirectory() {
 
 // ----------------------------------------------------------------------------
 
-TreeNode* EmployeeDirectory::searchCharNode(char key) {
-    // TODO
+TreeNode* AuxiliarSearchChar(TreeNode* traveler, char key)
+{
+    if (traveler==NULL)
+    {
+        return NULL;
+    }
+    if (traveler->lastInitial==key)
+    {
+        return traveler;
+    }
+    return AuxiliarSearchChar(traveler->left,key);
+    return AuxiliarSearchChar(traveler->right,key);
+    
+}
+
+TreeNode* EmployeeDirectory::searchCharNode(char key) 
+{
+    AuxiliarSearchChar(root,key);
 }
 
 // ----------------------------------------------------------------------------
