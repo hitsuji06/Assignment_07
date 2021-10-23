@@ -73,11 +73,15 @@ void showEmployeeAuxiliar(TreeNode* traveler)
         return;
     }
     showEmployeeAuxiliar(traveler->left);
-    cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl;
-    
+    if (traveler->parent==NULL)
+    {
+        cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl;
+    }else
+    {
+        cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<traveler->parent->lastInitial<<"]"<<endl;
+    }
+
     showEmployeeAuxiliar(traveler->right);
-    cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl;
-       
 }
 
 void EmployeeDirectory::showEmployeeDirectory() {
