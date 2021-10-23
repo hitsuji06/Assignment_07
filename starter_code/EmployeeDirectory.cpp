@@ -51,7 +51,10 @@ TreeNode* AuxiliarSearchChar(TreeNode* traveler, char key)
     {
         return traveler;
     }
-    return AuxiliarSearchChar(traveler->left,key);
+    if (traveler->lastInitial>key)
+    {
+        return AuxiliarSearchChar(traveler->left,key);
+    }
     return AuxiliarSearchChar(traveler->right,key);
     
 }
