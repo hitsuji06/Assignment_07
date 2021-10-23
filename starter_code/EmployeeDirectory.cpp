@@ -66,8 +66,22 @@ TreeNode* EmployeeDirectory::searchCharNode(char key)
 
 // ----------------------------------------------------------------------------
 
+void showEmployeeAuxiliar(TreeNode* traveler)
+{
+    if (traveler==NULL)
+    {
+        return;
+    }
+    showEmployeeAuxiliar(traveler->left);
+    cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl;
+    
+    showEmployeeAuxiliar(traveler->right);
+    cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl
+       
+}
+
 void EmployeeDirectory::showEmployeeDirectory() {
-    // TODO
+    showEmployeeAuxiliar(root);
 }
 
 // ----------------------------------------------------------------------------
