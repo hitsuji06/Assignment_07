@@ -76,7 +76,7 @@ void showEmployeeAuxiliar(TreeNode* traveler)
     cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl;
     
     showEmployeeAuxiliar(traveler->right);
-    cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl
+    cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl;
        
 }
 
