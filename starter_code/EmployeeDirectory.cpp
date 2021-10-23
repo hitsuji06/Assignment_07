@@ -68,6 +68,7 @@ TreeNode* EmployeeDirectory::searchCharNode(char key)
 
 void showEmployeeAuxiliar(TreeNode* traveler)
 {
+
     if (traveler==NULL)
     {
         return;
@@ -75,16 +76,46 @@ void showEmployeeAuxiliar(TreeNode* traveler)
     showEmployeeAuxiliar(traveler->left);
     if (traveler->parent==NULL)
     {
-        cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<"]"<<endl;
-    }else
+        cout<<"[Employees with lastInitial="<<traveler->lastInitial<<", parent= "<<"]"<<endl;
+        LLNode* travelman=traveler->head;
+        if (travelman!=NULL)
+        {
+            while(travelman!=NULL)
+            {
+                cout<<"> "<<travelman->empName <<", "<< travelman->empPhone<<", "<< travelman->empId<<endl;
+                travelman=travelman->next;
+            }
+        }
+        else
+        {
+            cout<<"No employees found."<<endl;
+        }
+        cout<<"---------------------------------------"<<endl;
+    }
+    else
     {
-        cout<<"[Employees with lastInitial="<<traveler->lastInitial<<" ,parent= "<<traveler->parent->lastInitial<<"]"<<endl;
+        cout<<"[Employees with lastInitial="<<traveler->lastInitial<<", parent="<<traveler->parent->lastInitial<<"]"<<endl;
+        LLNode* travelman=traveler->head;
+        if (travelman!=NULL)
+        {
+            while(travelman!=NULL)
+            {
+                cout<<"> "<<travelman->empName <<", "<< travelman->empPhone<<", "<< travelman->empId<<endl;
+                travelman=travelman->next;
+            }
+        }
+        else
+        {
+            cout<<"No employees found."<<endl;
+        }
+        cout<<"---------------------------------------"<<endl;
     }
 
     showEmployeeAuxiliar(traveler->right);
 }
 
-void EmployeeDirectory::showEmployeeDirectory() {
+void EmployeeDirectory::showEmployeeDirectory() 
+{
     showEmployeeAuxiliar(root);
 }
 
