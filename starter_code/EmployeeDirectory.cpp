@@ -144,7 +144,30 @@ LLNode* EmployeeDirectory::searchEmployee(int empId, string empName)
 }
 
 // ----------------------------------------------------------------------------
+void LLauxiliarinsertnew(int empid, string name, int lvl, string phone,int year,TreeNode* treeposition)
+{
+    LLNode* traveler=treeposition->head;
+    if(traveler==NULL)
+    {
+        traveler=new LLNode(empid,name,lvl,phone,year);
+        treeposition->head=traveler;
+    }
+    else
+    {
+        while (traveler->next!=NULL)
+        {
+            traveler=traveler->next;
+        }
+        LLNode* newracoon= new LLNode(empid,name,lvl,phone,year);
+        traveler->next= newracoon;
+    }
 
+    
+    
+
+
+
+}
 void EmployeeDirectory::insertEmployee(int empId, string empName, int empLevel, string empPhone, int empJoiningYear) {
     // TODO
 }
