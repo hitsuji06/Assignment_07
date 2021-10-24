@@ -121,8 +121,26 @@ void EmployeeDirectory::showEmployeeDirectory()
 
 // ----------------------------------------------------------------------------
 
-LLNode* EmployeeDirectory::searchEmployee(int empId, string empName) {
-    // TODO
+LLNode* SearchEmployeeLLAuxiliar(int id, string name, LLNode* traveler)
+{
+    while (traveler!=NULL)
+    {
+        if (id==traveler->empId&&name==traveler->empName)
+        {
+            return traveler;
+        }
+        traveler=traveler->next;
+    }
+    return NULL;
+}
+
+LLNode* EmployeeDirectory::searchEmployee(int empId, string empName) 
+{
+    char helper= getLastInitial(empName);
+    TreeNode* PositionOnTree = searchCharNode(helper);
+    LLNode* employeefound= SearchEmployeeLLAuxiliar(empId,empName,PositionOnTree->head);
+    return employeefound;
+    
 }
 
 // ----------------------------------------------------------------------------
