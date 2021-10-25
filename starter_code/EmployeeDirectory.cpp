@@ -151,6 +151,7 @@ void LLauxiliarinsertnew(int empid, string name, int lvl, string phone,int year,
     {
         traveler=new LLNode(empid,name,lvl,phone,year);
         treeposition->head=traveler;
+        return;
     }
     else
     {
@@ -160,8 +161,38 @@ void LLauxiliarinsertnew(int empid, string name, int lvl, string phone,int year,
         }
         LLNode* newracoon= new LLNode(empid,name,lvl,phone,year);
         traveler->next= newracoon;
+        return;
     }
 
+
+}
+
+TreeNode* CreateTreeNodeAux(char data, TreeNode* parent)
+{
+    TreeNode* addnode= new TreeNode(data);
+    addnode->head==NULL;
+    addnode->left==NULL;
+    addnode->right==NULL;
+    addnode->parent== parent;
+    return addnode;
+
+}
+
+TreeNode* addingTreenodeAuxiliar(TreeNode* traveler,char initial)
+{
+    if (traveler==NULL)
+    {
+        return CreateTreeNodeAux(initial,traveler->parent);
+    }
+    else if(traveler->lastInitial<initial)
+    {
+        traveler->right=addingTreenodeAuxiliar(traveler->right,initial);
+    }
+    else if(traveler->lastInitial>initial)
+    {
+        traveler->left=addingTreenodeAuxiliar(traveler->left,initial);
+    }
+    return traveler;
 
 }
 
@@ -172,9 +203,12 @@ void EmployeeDirectory::insertEmployee(int empId, string empName, int empLevel, 
     TreeNode* Wonderer = searchCharNode(initial);
     if (Wonderer==NULL)
     {
-        cout<<"not yet implemented"<<endl;
+        cout<<"is it getting here?"<<endl;
+        root = addingTreenodeAuxiliar(root,initial);
+
     }else
     {
+        cout<<"or here?"<<endl;
         LLauxiliarinsertnew(empId,empName,empLevel,empPhone,empJoiningYear,Wonderer);
     }
     
