@@ -162,14 +162,22 @@ void LLauxiliarinsertnew(int empid, string name, int lvl, string phone,int year,
         traveler->next= newracoon;
     }
 
-    
-    
-
-
 
 }
-void EmployeeDirectory::insertEmployee(int empId, string empName, int empLevel, string empPhone, int empJoiningYear) {
-    // TODO
+
+
+void EmployeeDirectory::insertEmployee(int empId, string empName, int empLevel, string empPhone, int empJoiningYear)
+{
+    char initial= getLastInitial(empName);
+    TreeNode* Wonderer = searchCharNode(initial);
+    if (Wonderer==NULL)
+    {
+        cout<<"not yet implemented"<<endl;
+    }else
+    {
+        LLauxiliarinsertnew(empId,empName,empLevel,empPhone,empJoiningYear,Wonderer);
+    }
+    
 }
 
 // ----------------------------------------------------------------------------
