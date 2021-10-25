@@ -159,8 +159,15 @@ void LLauxiliarinsertnew(int empid, string name, int lvl, string phone,int year,
         {
             traveler=traveler->next;
         }
+        // while (traveler2->next!=traveler)
+        // {
+        //     traveler2=traveler2->next;
+        // }
+        
+        
         LLNode* newracoon= new LLNode(empid,name,lvl,phone,year);
-        traveler->next= newracoon;
+        traveler->next=newracoon;
+        // traveler2->next=newracoon;
         return;
     }
 
@@ -170,27 +177,27 @@ void LLauxiliarinsertnew(int empid, string name, int lvl, string phone,int year,
 TreeNode* CreateTreeNodeAux(char data, TreeNode* parent)
 {
     TreeNode* addnode= new TreeNode(data);
-    addnode->head==NULL;
-    addnode->left==NULL;
-    addnode->right==NULL;
-    addnode->parent== parent;
+    addnode->head=NULL;
+    addnode->left=NULL;
+    addnode->right=NULL;
+    addnode->parent= parent;
     return addnode;
 
 }
 
-TreeNode* addingTreenodeAuxiliar(TreeNode* traveler,char initial)
+TreeNode* addingTreenodeAuxiliar(TreeNode* traveler,char initial,TreeNode* parenthelper)
 {
     if (traveler==NULL)
     {
-        return CreateTreeNodeAux(initial,traveler->parent);
+        return CreateTreeNodeAux(initial,parenthelper);
     }
     else if(traveler->lastInitial<initial)
     {
-        traveler->right=addingTreenodeAuxiliar(traveler->right,initial);
+        traveler->right=addingTreenodeAuxiliar(traveler->right,initial,traveler);
     }
     else if(traveler->lastInitial>initial)
     {
-        traveler->left=addingTreenodeAuxiliar(traveler->left,initial);
+        traveler->left=addingTreenodeAuxiliar(traveler->left,initial,traveler);
     }
     return traveler;
 
@@ -201,14 +208,20 @@ void EmployeeDirectory::insertEmployee(int empId, string empName, int empLevel, 
 {
     char initial= getLastInitial(empName);
     TreeNode* Wonderer = searchCharNode(initial);
-    if (Wonderer==NULL)
+    if(root==NULL)
     {
-        cout<<"is it getting here?"<<endl;
-        root = addingTreenodeAuxiliar(root,initial);
+        root= CreateTreeNodeAux(initial,NULL);
+        LLauxiliarinsertnew(empId,empName,empLevel,empPhone,empJoiningYear,root);
+        return;
+    }
+    else if (Wonderer==NULL)
+    {
+        root = addingTreenodeAuxiliar(root,initial,NULL);
+        Wonderer=searchCharNode(initial);
+        LLauxiliarinsertnew(empId,empName,empLevel,empPhone,empJoiningYear,Wonderer);
 
     }else
     {
-        cout<<"or here?"<<endl;
         LLauxiliarinsertnew(empId,empName,empLevel,empPhone,empJoiningYear,Wonderer);
     }
     
