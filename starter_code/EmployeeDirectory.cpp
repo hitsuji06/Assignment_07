@@ -34,10 +34,41 @@ EmployeeDirectory::EmployeeDirectory() {
 }
 
 // ----------------------------------------------------------------------------
-
-EmployeeDirectory::~EmployeeDirectory() {
-    // TODO
+void destroyNode(TreeNode* traveler)
+{
+    if (traveler==NULL)
+    {
+        return;
+    }
+    else if(traveler!=NULL)
+    {
+        destroyNode(traveler->left);
+        destroyNode(traveler->right);
+        if(traveler->head!=NULL)
+        {
+            LLNode* pointer= traveler->head->next;
+            while (pointer!=NULL)
+            {
+                delete traveler->head;
+                traveler->head=pointer;
+                pointer=pointer->next;
+            }
+            delete traveler->head;
+            traveler->head=NULL;
+        }       
+        traveler->left=NULL;
+        traveler->right=NULL;
+        traveler->parent=NULL;
+        delete traveler;
+        traveler = NULL;
+    }
 }
+EmployeeDirectory::~EmployeeDirectory()
+{
+    destroyNode(root);
+    root=NULL;
+}
+
 
 // ----------------------------------------------------------------------------
 
