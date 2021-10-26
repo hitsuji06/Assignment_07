@@ -30,7 +30,7 @@ void EmployeeDirectory::printEmployee(LLNode* n) {
 // ----------------------------------------------------------------------------
 
 EmployeeDirectory::EmployeeDirectory() {
-    //todo
+    root=NULL;
 }
 
 // ----------------------------------------------------------------------------
