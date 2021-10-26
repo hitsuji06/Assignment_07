@@ -244,8 +244,33 @@ void EmployeeDirectory::insertEmployee(int empId, string empName, int empLevel, 
 
 // ----------------------------------------------------------------------------
 
-void EmployeeDirectory::removeEmployee(int empId, string empName) {
-    // TODO
+void removeEmployeehelper(int empid,string empname,TreeNode* traveler)
+{
+    LLNode* LLtraveler=traveler->head;
+    if (LLtraveler==NULL)
+    {
+        cout<<"Employee do not found"<<endl;
+    }
+    
+
+
+}
+
+
+void EmployeeDirectory::removeEmployee(int empId, string empName) 
+{
+    char initial= getLastInitial(empName);
+    TreeNode* Wonderer = searchCharNode(initial);
+    if (Wonderer==NULL)
+    {
+        cout<<"Employee do not found"<<endl;
+    }
+    else
+    {
+        removeEmployeehelper(empId,empName,Wonderer);
+    }
+        
+
 }
 
 // ----------------------------------------------------------------------------
