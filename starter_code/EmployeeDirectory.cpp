@@ -247,12 +247,34 @@ void EmployeeDirectory::insertEmployee(int empId, string empName, int empLevel, 
 void removeEmployeehelper(int empid,string empname,TreeNode* traveler)
 {
     LLNode* LLtraveler=traveler->head;
+    LLNode* LLtraveler2=traveler->head;
     if (LLtraveler==NULL)
     {
-        cout<<"Employee do not found"<<endl;
+        cout<<"Employee not found."<<endl;
+        return;
+    }
+    while (LLtraveler!=NULL&&LLtraveler->empName!=empname||empid!=LLtraveler->empId)
+    {
+        LLtraveler=LLtraveler->next;
+    }
+    if (LLtraveler==traveler->head)
+    {
+        traveler->head=NULL;
     }
     
-
+    else if (LLtraveler!=NULL)
+    {
+        while (LLtraveler2!=NULL&&LLtraveler2->next!=LLtraveler)
+        {
+            LLtraveler2=LLtraveler2->next;
+        }
+        LLtraveler2->next=LLtraveler->next;
+        
+    }
+    else
+    {
+        cout<<"Employee not found."<<endl;
+    }
 
 }
 
@@ -263,7 +285,7 @@ void EmployeeDirectory::removeEmployee(int empId, string empName)
     TreeNode* Wonderer = searchCharNode(initial);
     if (Wonderer==NULL)
     {
-        cout<<"Employee do not found"<<endl;
+        cout<<"Employee not found."<<endl;
     }
     else
     {
