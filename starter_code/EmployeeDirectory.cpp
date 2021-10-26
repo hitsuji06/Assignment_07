@@ -290,9 +290,10 @@ void removeEmployeehelper(int empid,string empname,TreeNode* traveler)
     }
     if (LLtraveler==traveler->head)
     {
-        traveler->head=NULL;
+        LLtraveler2=traveler->head->next;
+        delete traveler->head;
+        traveler->head=LLtraveler2;
     }
-    
     else if (LLtraveler!=NULL)
     {
         while (LLtraveler2!=NULL&&LLtraveler2->next!=LLtraveler)
@@ -300,7 +301,7 @@ void removeEmployeehelper(int empid,string empname,TreeNode* traveler)
             LLtraveler2=LLtraveler2->next;
         }
         LLtraveler2->next=LLtraveler->next;
-        
+        delete LLtraveler;
     }
     else
     {
