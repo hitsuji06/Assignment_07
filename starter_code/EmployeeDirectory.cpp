@@ -147,28 +147,43 @@ LLNode* EmployeeDirectory::searchEmployee(int empId, string empName)
 void LLauxiliarinsertnew(int empid, string name, int lvl, string phone,int year,TreeNode* treeposition)
 {
     LLNode* traveler=treeposition->head;
+    LLNode* traveler2=treeposition->head;
     if(traveler==NULL)
     {
         traveler=new LLNode(empid,name,lvl,phone,year);
         treeposition->head=traveler;
+        treeposition->head->next=NULL;
+        return;
+    }
+    else if(treeposition->head->next==NULL)
+    {
+        if (treeposition->head->empId < empid )
+        {
+            LLNode* newracoon= new LLNode(empid,name,lvl,phone,year);
+            traveler->next= newracoon;
+        }
+        else if(treeposition->head->empId>empid)
+        {
+            LLNode* newracoon= new LLNode(empid,name,lvl,phone,year);
+            newracoon->next= treeposition->head;
+            treeposition->head=newracoon;
+        }
         return;
     }
     else
-    {
-        while (traveler->next!=NULL)
+    {  
+        while ( traveler!=NULL && traveler->empId<empid )
         {
             traveler=traveler->next;
         }
-        // while (traveler2->next!=traveler)
-        // {
-        //     traveler2=traveler2->next;
-        // }
-        
-        
+        while (traveler2!=NULL&&traveler2->next!=traveler)
+        {
+            traveler2=traveler2->next;
+        }
         LLNode* newracoon= new LLNode(empid,name,lvl,phone,year);
-        traveler->next=newracoon;
-        // traveler2->next=newracoon;
-        return;
+        newracoon->next=traveler;
+        traveler2->next=newracoon;
+        
     }
 
 
