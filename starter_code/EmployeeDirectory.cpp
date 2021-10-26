@@ -306,13 +306,37 @@ void EmployeeDirectory::removeEmployee(int empId, string empName)
 void EmployeeDirectory::leftRotate(TreeNode* curr) 
 {
     TreeNode* y=curr->right;
-    if(curr!=root){
+    if(curr!=root)
+    {
+        if(curr->parent->right!=curr)
+        {
+            curr->parent->left=y;
+        }
+        else
+        {
+            curr->parent->right=y;
+        }        
+        y->parent=curr->parent;
+        curr->parent=y;
+        curr->right=y->left;
+        if (y->left==NULL)
+        {
+            y->left=curr;
+            return;
+        }else
+        {
+            y->left->parent=curr;
+            y->left=curr;
+            return;
+        }
+        y->left=curr;
+        return;
 
     }
     else
     {
         curr->right=y->left;
-        y->right=curr;
+        y->left=curr;
         y->parent=NULL;
         curr->parent=y;
         if (curr->right!=NULL)
